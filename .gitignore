@@ -1,3 +1,6 @@
 *.swp
 /data/.ipynb_checkpoints
 __pychache__/
+/notebooks/.ipynb_checkpoints
+/data/cleaned_data
+/data/Week1_challenge_data_source(CSV)
