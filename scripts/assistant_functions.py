@@ -73,5 +73,13 @@ class Assistants:
     
         return df
         
-    def euclidean(point, data):
+    def euclidean(self, point, data):
         return np.sqrt(np.sum((point - data)**2, axis=1))
+
+    def cluser_label(self, x: int, cols: list = []) -> str:
+        if (not type(x) == int):
+            return x
+        if (x < len(cols)):
+            return cols[x]
+
+        return str(x)
