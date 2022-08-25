@@ -72,4 +72,6 @@ class Assistants:
         df[col] = np.where(df[col] > upper_bound, upper_bound, df[col])
     
         return df
-  
+        
+    def euclidean(point, data):
+        return np.sqrt(np.sum((point - data)**2, axis=1))
