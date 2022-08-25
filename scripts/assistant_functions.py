@@ -60,7 +60,7 @@ class Assistants:
     def scale_and_normalize(self, df, columns):
         return self.normalizer(self.scaler(df, columns), columns)
 
-    def handle_outliers_with_mode(df, col, method="lower_upper"):
+    def handle_outliers_with_mode(self, df, col, method="lower_upper"):
         df = df.copy()
         q1 = df[col].quantile(0.25)
         q3 = df[col].quantile(0.75)
