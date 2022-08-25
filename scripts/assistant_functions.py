@@ -59,6 +59,27 @@ class Assistants:
 
     def scale_and_normalize(self, df, columns):
         return self.normalizer(self.scaler(df, columns), columns)
+
+    def handle_outliers_with_mode(df, col, method="lower_upper"):
+        df = df.copy()
+        q1 = df[col].quantile(0.25)
+        q3 = df[col].quantile(0.75)
+    
+        lower_bound = q1 - ((1.5) * (q3 - q1))
+        upper_bound = q3 + ((1.5) * (q3 - q1))
+    
+        if method == "mean":
+            df[col] = np.where(df[col] < lower_bound,   df[col].mean(), df[col])
+            df[col] = np.where(df[col] > upper_bound, df[col].mean(), df[col])
+    
+        elif  method == "mode":
+            df[col] = np.where(df[col] < lower_bound,   df[col].mode()[0], df[col])
+            df[col] = np.where(df[col] > upper_bound, df[col].mode()[0], df[col])
+        else:
+            df[col] = np.where(df[col] < lower_bound, lower_bound, df[col])
+            df[col] = np.where(df[col] > upper_bound, upper_bound, df[col])
+    
+        return df
     
     def handle_outliers(self, df, col):
         df = df.copy()
