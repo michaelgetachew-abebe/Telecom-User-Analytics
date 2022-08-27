@@ -1,35 +1,22 @@
-# Core Pkgs
 import streamlit as st
-import pandas as pd
 
-import sys
-sys.path.insert(0, './scripts')
+# Custom imports 
+from multiapp import MultiPage
+#import the our pages
+from apps import user_overview, user_engagement, user_experience, user_satisfaction, ml_model
 
-import streamlit as st
-from multiapp import MultiApp
-from pages import user_overview_analysis_page, user_engagement_analysis_page, user_experience_analysis_page , user_satisfaction_analysis_page, model_implementation
-# import your app modules here
+# Create an instance of the app 
+app = MultiPage()
 
-st.set_page_config(page_title="TellCo Telecom Analytics", layout="wide")
+# Title of the main page
+st.title("TELECOM USER ANALYTICS IN CASE OF: TellCo COMAPNY")
 
-app = MultiApp()
-
-
-st.sidebar.markdown("""
-# TellCo's User Analytics
-### Multi-Page App
-This multi-page app is using the [streamlit-multiapps](https://github.com/upraneelnihar/streamlit-multiapps) framework developed by [Praneel Nihar](https://medium.com/@u.praneel.nihar). Also check out his [Medium article](https://medium.com/@u.praneel.nihar/building-multi-page-web-app-using-streamlit-7a40d55fa5b4).
-### Modifications
-\t- Page Folder Based Access
-\t- Presentation changed to SideBar
-""")
-
-# Add all your application here
-app.add_app("User Overview Analysis", user_overview_analysis_page.app)
-app.add_app("User Engagement Analysis", user_engagement_analysis_page.app)
-app.add_app("User Experience Analysis", user_experience_analysis_page.app)
-app.add_app("User Satisfaction Analysis", user_satisfaction_analysis_page.app)
-app.add_app("Predict Satisfaction", model_implementation.app)
+# Add all your applications (pages) here
+app.add_page("USER OVERVIEW", user_overview.app)
+app.add_page("USER ENGAGEMENT ANALYSIS", user_engagement.app)
+app.add_page("USER EXPERIENCE ANALYSIS", user_experience.app)
+app.add_page("USER SATISFACTION ANALYSIS", user_satisfaction.app)
+app.add_page("MACHINE LEARNING MODEL", ml_model.app)
 
 # The main app
 app.run()
